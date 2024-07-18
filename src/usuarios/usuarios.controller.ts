@@ -1,3 +1,4 @@
+import { CriaUsuarioDTO } from './dto/CriaUsuario.dto';
 import { UsuarioRepository } from './usuario.repository';
 import {Body, Controller, Get, Post } from '@nestjs/common';
 
@@ -10,7 +11,8 @@ export class userController {
         Melhorando assim testes unitários que não precisam utilizar banco de dados.
     */
 
-    constructor(private userRepo: UsuarioRepository){} 
+        // cria um atributo direto no construtor
+    constructor(private userRepo: UsuarioRepository){}
 
     @Get()
     async listUser(){
@@ -18,9 +20,9 @@ export class userController {
     }
     
     @Post()
-    async createUser(@Body() dadosUsuario){    
-        this.userRepo.salvar(dadosUsuario);
-        return dadosUsuario;
+    async createUser(@Body() CriaUsuarioDTO: CriaUsuarioDTO){    
+        this.userRepo.salvar(CriaUsuarioDTO);
+        return CriaUsuarioDTO;
     }
 
 }
